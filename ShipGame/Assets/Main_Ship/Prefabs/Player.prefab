@@ -122,6 +122,7 @@ Transform:
   m_Children:
   - {fileID: 5819833816807104230}
   - {fileID: 4989293914921264573}
+  - {fileID: 2200597686717799440}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,6 +139,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _laserPrefab: {fileID: 164600534569650307, guid: 0f98f9279424f014ea253ab79b0df0f4,
+    type: 3}
+  _cannon01Position: {fileID: 7834223842120662089}
+  _fireRate: 0.15
+--- !u!1 &7834223842120662089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2200597686717799440}
+  m_Layer: 0
+  m_Name: Cannon01Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2200597686717799440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834223842120662089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.001, y: 0.3704, z: -0.035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4989293915074344178}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4989293915961481704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,11 +254,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mainShip_lowPoly03_Again_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 2567867336357311773, guid: be87c95abab21634f82903bb5d09e2e2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be87c95abab21634f82903bb5d09e2e2, type: 3}
