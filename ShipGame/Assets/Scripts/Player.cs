@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     private GameObject _cannon01Position;
     [SerializeField]
     private float _fireRate = 0.15f;
+    [SerializeField]
+    private int _lives = 3;
+
+    private SpawnManager _spawnManager;
 
     private float _canFire = -1f;
     private float _horizontalAxis = 0f;
@@ -62,5 +66,22 @@ public class Player : MonoBehaviour
     {        
          _canFire = Time.time + _fireRate;
          Instantiate(_laserPrefab, _cannon01Position.transform.position, Quaternion.identity);        
+    }
+
+    public void Damage()
+    {
+        _lives--;
+
+        if(_lives < 1)
+        {
+            _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+            
+            if(_spawnManager != null)
+            {
+                _spawnManager.OnPlayerDeath();
+            }
+            
+            Destroy(this.gameObject);
+        }
     }
 }

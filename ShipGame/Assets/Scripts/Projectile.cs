@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    [SerializeField]
     private float _laserSpeed = 8.0f;
 
 
