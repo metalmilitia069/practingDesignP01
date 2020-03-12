@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2620947763533786270}
   - component: {fileID: 2620947763533786271}
   - component: {fileID: 2620947763533786264}
+  - component: {fileID: 431188304060885347}
   m_Layer: 0
   m_Name: LaserBolt01_geometry
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &431188304060885347
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2620947763533786267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4236994543656208120
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2c916d05826e049a85ece57ed2ebcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _laserSpeed: 8
 --- !u!136 &3595063135393627173
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -133,7 +149,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4236994543656208120}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

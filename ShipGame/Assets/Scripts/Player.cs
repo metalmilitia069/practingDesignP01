@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
-    private GameObject _laserPrefab;
+    private GameObject _singleLaserPrefab;
+    [SerializeField]
+    private GameObject _tripleLaserPrefab;
     [SerializeField]
     private GameObject _cannon01Position;
     [SerializeField]
@@ -20,8 +22,8 @@ public class Player : MonoBehaviour
     private float _canFire = -1f;
     private float _horizontalAxis = 0f;
     private float _verticalAxis = 0f;
-
-    
+    [SerializeField]
+    private bool _isTripleShotEnabled = false;
 
 
     // Start is called before the first frame update
@@ -65,7 +67,14 @@ public class Player : MonoBehaviour
     private void Fire()
     {        
          _canFire = Time.time + _fireRate;
-         Instantiate(_laserPrefab, _cannon01Position.transform.position, Quaternion.identity);        
+        if (_isTripleShotEnabled)
+        {
+            Instantiate(_tripleLaserPrefab, _cannon01Position.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(_singleLaserPrefab, _cannon01Position.transform.position, Quaternion.identity);
+        }
     }
 
     public void Damage()
@@ -83,5 +92,10 @@ public class Player : MonoBehaviour
             
             Destroy(this.gameObject);
         }
+    }
+
+    public void EnableTripleShot()
+    {
+        _isTripleShotEnabled = true;
     }
 }
