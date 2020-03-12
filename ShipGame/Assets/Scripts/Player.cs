@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
+    private float _speedMultiplier = 2f;
     [SerializeField]
     private GameObject _singleLaserPrefab;
     [SerializeField]
@@ -24,12 +25,22 @@ public class Player : MonoBehaviour
     private float _verticalAxis = 0f;
     [SerializeField]
     private bool _isTripleShotEnabled = false;
+    [SerializeField]
+    private bool _isSpeedEnabled = false;
+    [SerializeField]
+    private bool _isShieldOn = false;
 
+    [SerializeField]
+    private int _score;
+
+    private UIManager _uiManager;
 
     // Start is called before the first frame update
     void Start()
     {        
         this.transform.position = new Vector3(0, 0, 0);
+
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -50,7 +61,14 @@ public class Player : MonoBehaviour
         _verticalAxis = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(_horizontalAxis, _verticalAxis, 0);
-        transform.Translate(direction * _speed * Time.deltaTime);
+        if (!_isSpeedEnabled)
+        {
+            transform.Translate(direction * _speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(direction * _speedMultiplier * _speed * Time.deltaTime);
+        }
 
         if (this.transform.position.x >= 11.10f)
         {
@@ -79,7 +97,14 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if(_isShieldOn)
+        {
+            _isShieldOn = false;
+            return;
+        }
         _lives--;
+
+        _uiManager.UpdateLivesDisplay(_lives);
 
         if(_lives < 1)
         {
@@ -90,6 +115,8 @@ public class Player : MonoBehaviour
                 _spawnManager.OnPlayerDeath();
             }
             
+            
+
             Destroy(this.gameObject);
         }
     }
@@ -97,5 +124,29 @@ public class Player : MonoBehaviour
     public void EnableTripleShot()
     {
         _isTripleShotEnabled = true;
+    }
+
+    public void EnableSpeed()
+    {
+        _isSpeedEnabled = true;
+        StartCoroutine(SpeedPowerDown());
+    }
+
+    IEnumerator SpeedPowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedEnabled = false;
+        StopCoroutine(SpeedPowerDown());
+    }
+
+    public void EnableShield()
+    {
+        _isShieldOn = true;
+    }
+
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdateScore(_score);
     }
 }
