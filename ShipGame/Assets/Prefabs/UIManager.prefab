@@ -90,7 +90,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1500585027
 RectTransform:
   m_ObjectHideFlags: 0
@@ -274,6 +274,7 @@ MonoBehaviour:
   _livesDisplay: {fileID: 141767394}
   _gameOverText: {fileID: 2091809152641450661}
   _restartText: {fileID: 1500585028}
+  _gameManager: {fileID: 0}
 --- !u!1 &8467887263686134821
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5888561300411660787
 RectTransform:
   m_ObjectHideFlags: 0
