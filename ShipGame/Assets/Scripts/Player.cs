@@ -35,12 +35,20 @@ public class Player : MonoBehaviour
 
     private UIManager _uiManager;
 
+    [SerializeField]
+    private AudioClip _laserAudioClip;
+
+    private AudioSource _audioSource;
+
     // Start is called before the first frame update
     void Start()
     {        
         this.transform.position = new Vector3(0, 0, 0);
 
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _laserAudioClip;
     }
 
     // Update is called once per frame
@@ -93,6 +101,8 @@ public class Player : MonoBehaviour
         {
             Instantiate(_singleLaserPrefab, _cannon01Position.transform.position, Quaternion.identity);
         }
+
+        _audioSource.Play();
     }
 
     public void Damage()
