@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
 
+
+    private bool _flipflop = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +73,12 @@ public class UIManager : MonoBehaviour
             _gameOverText.text = "";
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        _flipflop = !_flipflop;
+        //_pauseMenuPanel.SetActive(_flipflop);
     }
 }
