@@ -30,6 +30,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _bestScore = PlayerPrefs.GetInt("HighScore", 0);
+        _bestText.text = "Best: " + _bestScore;
+
         _scoreText.text = "Score: 0";
         _gameOverText.gameObject.SetActive(false);
 
@@ -59,6 +62,7 @@ public class UIManager : MonoBehaviour
         if (_score > _bestScore)
         {
             _bestScore = _score;
+            PlayerPrefs.SetInt("HighScore", _bestScore);
             _bestText.text = "Best: " + _bestScore;
         }
     }
