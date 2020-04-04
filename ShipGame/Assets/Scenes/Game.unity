@@ -421,25 +421,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8467887262016666922}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &519726672
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519726669}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eeafebf651a6d0b45aba96ca1045cce5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &522321311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1776,16 +1757,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1579146156}
-    - target: {fileID: 4563965462997129579, guid: e2d7e2cf17af1214093921daf86b0724,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 350
-      objectReference: {fileID: 0}
-    - target: {fileID: 4964625397942467107, guid: e2d7e2cf17af1214093921daf86b0724,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5493952113534062328, guid: e2d7e2cf17af1214093921daf86b0724,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1900,26 +1871,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467887263686134842, guid: e2d7e2cf17af1214093921daf86b0724,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -97.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467887263686134842, guid: e2d7e2cf17af1214093921daf86b0724,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -34.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467887263686134842, guid: e2d7e2cf17af1214093921daf86b0724,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 168.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467887263686134843, guid: e2d7e2cf17af1214093921daf86b0724,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Score: '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2d7e2cf17af1214093921daf86b0724, type: 3}

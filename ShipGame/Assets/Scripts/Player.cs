@@ -124,8 +124,8 @@ public class Player : MonoBehaviour
             {
                 _spawnManager.OnPlayerDeath();
             }
-            
-            
+
+            _uiManager.CheckForBestScore();
 
             Destroy(this.gameObject);
         }

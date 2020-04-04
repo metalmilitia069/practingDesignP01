@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
+    private Text _bestText;
+    [SerializeField]
     private Sprite[] _lifeSprites;
     [SerializeField]
     private Image _livesDisplay;
@@ -17,6 +19,10 @@ public class UIManager : MonoBehaviour
     private Text _restartText;
     [SerializeField]
     private GameManager _gameManager;
+
+    private int _score;
+    [SerializeField]
+    private int _bestScore;
 
 
     private bool _flipflop = false;
@@ -43,7 +49,18 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int score)
     {
+        _score = score;
         _scoreText.text = "Score: " + score; 
+
+    }
+
+    public void CheckForBestScore()
+    {
+        if (_score > _bestScore)
+        {
+            _bestScore = _score;
+            _bestText.text = "Best: " + _bestScore;
+        }
     }
 
     public void UpdateLivesDisplay(int lives)
