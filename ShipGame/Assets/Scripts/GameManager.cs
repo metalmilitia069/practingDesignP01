@@ -14,10 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool _flipflop = false;
 
+    [SerializeField]
+    private Animator _pauseAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _pauseAnimator = _pauseMenuPanel.GetComponent<Animator>();
+        _pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     // Update is called once per frame
@@ -37,7 +41,10 @@ public class GameManager : MonoBehaviour
         {
             _flipflop = !_flipflop;
             _pauseMenuPanel.SetActive(_flipflop);
-            if(!_flipflop)
+
+            _pauseAnimator.SetBool("isPaused", true);
+
+            if (!_flipflop)
             {
                 Time.timeScale = 1.0f;
             }
