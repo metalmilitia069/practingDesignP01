@@ -5,23 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    #region Singleton
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("There is more than one GameManager in the Scene");
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    #endregion
+
     [SerializeField]
     private bool _isGameOver;
 
-    [SerializeField]
-    private GameObject _pauseMenuPanel;
+    //[SerializeField]
+    //private GameObject _pauseMenuPanel;
 
     [SerializeField]
     private bool _flipflop = false;
 
-    [SerializeField]
-    private Animator _pauseAnimator;
+    //[SerializeField]
+    //private Animator _pauseAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-        _pauseAnimator = _pauseMenuPanel.GetComponent<Animator>();
-        _pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+       
     }
 
     // Update is called once per frame
@@ -30,6 +47,9 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && _isGameOver == true)
         {
             SceneManager.LoadScene("Game");
+
+            _isGameOver = false;
+            UIManager.instance.ResetSequence();
         }
 
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -39,10 +59,9 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.P))
         {
-            _flipflop = !_flipflop;
-            _pauseMenuPanel.SetActive(_flipflop);
+            _flipflop = !_flipflop;            
 
-            _pauseAnimator.SetBool("isPaused", true);
+            UIManager.instance.SetPauseMenu(_flipflop);
 
             if (!_flipflop)
             {
@@ -64,7 +83,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         _flipflop = !_flipflop;
-        _pauseMenuPanel.SetActive(_flipflop);
+        //_pauseMenuPanel.SetActive(_flipflop);
+        UIManager.instance.SetPauseMenu(_flipflop);
     }
 
     public void LoadMainMenu()

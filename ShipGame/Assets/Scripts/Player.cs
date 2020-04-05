@@ -33,8 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
-    private UIManager _uiManager;
-
+    
     [SerializeField]
     private AudioClip _laserAudioClip;
 
@@ -43,9 +42,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {        
-        this.transform.position = new Vector3(0, 0, 0);
-
-        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        this.transform.position = new Vector3(0, 0, 0);       
 
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _laserAudioClip;
@@ -112,9 +109,9 @@ public class Player : MonoBehaviour
             _isShieldOn = false;
             return;
         }
-        _lives--;
+        _lives--;        
 
-        _uiManager.UpdateLivesDisplay(_lives);
+        UIManager.instance.UpdateLivesDisplay(_lives);
 
         if(_lives < 1)
         {
@@ -124,8 +121,8 @@ public class Player : MonoBehaviour
             {
                 _spawnManager.OnPlayerDeath();
             }
-
-            _uiManager.CheckForBestScore();
+                       
+            UIManager.instance.CheckForBestScore();
 
             Destroy(this.gameObject);
         }
@@ -156,7 +153,7 @@ public class Player : MonoBehaviour
 
     public void AddScore(int points)
     {
-        _score += points;
-        _uiManager.UpdateScore(_score);
+        _score += points;        
+        UIManager.instance.UpdateScore(_score);
     }
 }
