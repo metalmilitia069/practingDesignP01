@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Variables")]
+    [Space(20)]    
+    [SerializeField]
+    private int _bestScore;
+    private int _score;
+    private bool _flipflop = false;
+
+    [Header("UI Elements")]
+    [Space(20)]
     [SerializeField]
     private Text _scoreText;
+    [SerializeField]
+    private Text _bestText;
     [SerializeField]
     private Sprite[] _lifeSprites;
     [SerializeField]
@@ -15,21 +27,61 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private Text _restartText;
+
+
+
+    [Serializable]
+    public struct UIPanels
+    {
+        public GameObject mainMenuPanel;
+        public GameObject pausePanel;
+        public Animator pauseAnimator;
+    }
+
+    [Header("UI Panel Prefabs/References")]
+    [Space(20)]
     [SerializeField]
-    private GameManager _gameManager;
+    private UIPanels setOfUIPanels;
+
+    //[Header("UI Panel Prefabs/References")]
+    //[Space(20)]
+    //[SerializeField]
+    //private 
+
+
+    #region Singleton
+
+    public static UIManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("There is More Than One UIManager in the Scene!!!");
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    #endregion
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        _bestScore = PlayerPrefs.GetInt("HighScore", 0);
+        _bestText.text = "Best: " + _bestScore;
+
         _scoreText.text = "Score: 0";
         _gameOverText.gameObject.SetActive(false);
 
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if(_gameManager == null)
-        {
-            Debug.Log("Gama MAnager is Null");
-        }
+        setOfUIPanels.pauseAnimator = setOfUIPanels.pausePanel.GetComponent<Animator>();
+        setOfUIPanels.pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     // Update is called once per frame
@@ -40,7 +92,19 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int score)
     {
+        _score = score;
         _scoreText.text = "Score: " + score; 
+
+    }
+
+    public void CheckForBestScore()
+    {
+        if (_score > _bestScore)
+        {
+            _bestScore = _score;
+            PlayerPrefs.SetInt("HighScore", _bestScore);
+            _bestText.text = "Best: " + _bestScore;
+        }
     }
 
     public void UpdateLivesDisplay(int lives)
@@ -58,7 +122,16 @@ public class UIManager : MonoBehaviour
         _gameOverText.gameObject.SetActive(true);
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
-        _gameManager.GameOver();
+        
+        GameManager.instance.GameOver();
+    }
+
+    public void ResetSequence()
+    {
+        _gameOverText.gameObject.SetActive(false);
+        _restartText.gameObject.SetActive(false);
+        UpdateLivesDisplay(3);
+        StopCoroutine(GameOverFlickerRoutine());
     }
 
     IEnumerator GameOverFlickerRoutine()
@@ -70,5 +143,18 @@ public class UIManager : MonoBehaviour
             _gameOverText.text = "";
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        _flipflop = !_flipflop;
+        //_pauseMenuPanel.SetActive(_flipflop);
+    }
+
+    public void SetPauseMenu(bool flipflop)
+    {
+        setOfUIPanels.pausePanel.SetActive(flipflop);
+        setOfUIPanels.pauseAnimator.SetBool("isPaused", flipflop);        
     }
 }

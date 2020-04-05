@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isGameOver: 0
+  _flipflop: 0
+  _pauseAnimator: {fileID: 0}
