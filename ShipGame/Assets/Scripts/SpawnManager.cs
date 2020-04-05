@@ -11,7 +11,30 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _PowerUpPrefab;
     
+
+    [SerializeField]
     private bool _stopSpawing = false;
+
+
+    #region Singleton
+    public static SpawnManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("There is Another SpawnManager in the Scene!!!");
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    #endregion
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +49,7 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning()
     {
+        _stopSpawing = false;
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupsRoutine());
     }
