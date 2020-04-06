@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int _score;
-
     
     [SerializeField]
     private AudioClip _laserAudioClip;
@@ -57,7 +56,6 @@ public class Player : MonoBehaviour
         {
             this.Fire();
         }
-
     }
 
     private void CalculateMovement()
@@ -114,14 +112,8 @@ public class Player : MonoBehaviour
         UIManager.instance.UpdateLivesDisplay(_lives);
 
         if(_lives < 1)
-        {
-            //_spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-
-            //if(_spawnManager != null)
-            //{
-            //_spawnManager.OnPlayerDeath();
-            SpawnManager.instance.OnPlayerDeath();
-            //}
+        {            
+            SpawnManager.instance.OnPlayerDeath();           
                        
             UIManager.instance.CheckForBestScore();
 

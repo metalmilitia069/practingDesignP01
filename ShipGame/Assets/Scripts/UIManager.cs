@@ -45,12 +45,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private UIPanels setOfUIPanels;
 
-    //[Header("UI Panel Prefabs/References")]
-    //[Space(20)]
-    //[SerializeField]
-    //private 
-
-
     #region Singleton
 
     public static UIManager instance;
@@ -65,7 +59,6 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
@@ -82,8 +75,6 @@ public class UIManager : MonoBehaviour
         _bestText.text = "Best: " + _bestScore;
 
         _scoreText.text = "Score: 0";
-        //_gameOverText.gameObject.SetActive(false);
-
 
         setOfUIPanels.pauseAnimator = setOfUIPanels.pausePanel.GetComponent<Animator>();
         setOfUIPanels.pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
@@ -123,9 +114,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void GameOverSequence()
-    {
-        //_gameOverText.gameObject.SetActive(true);
-        //_restartText.gameObject.SetActive(true);
+    {        
         setOfUIPanels.gameOverPanel.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
         
@@ -155,7 +144,6 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         _flipflop = !_flipflop;
-        //_pauseMenuPanel.SetActive(_flipflop);
     }
 
     public void SetPauseMenu(bool flipflop)

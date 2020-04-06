@@ -26,16 +26,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool _isGameOver;
-
-    //[SerializeField]
-    //private GameObject _pauseMenuPanel;
-
+    
     [SerializeField]
     private bool _flipflop = false;
-
-    //[SerializeField]
-    //private Animator _pauseAnimator;
-
+    
     [Serializable]   
     public struct SetofSubManagers
     {
@@ -51,20 +45,14 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        //SpawnSubManagers();
+    {        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene aScene, LoadSceneMode aMode)
     {
         SpawnSubManagers();
-        //UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(true);
-        //UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(false);
-        //UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
-        //UIManager.instance.SetOfUIPanels.gameOverPanel.SetActive(false);
-
-        //SceneManager.sceneLoaded -= OnSceneLoaded;
+        
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(true);
@@ -131,8 +119,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
 
         _flipflop = !_flipflop;
-
-        //_pauseMenuPanel.SetActive(_flipflop);
+       
         UIManager.instance.SetPauseMenu(_flipflop);
     }
 
@@ -149,20 +136,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("Game");
-        //GameManager.instance.SpawnSubManagers();
-
-        //UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(true);
-        //UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(false);
-        //UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
-        //UIManager.instance.SetOfUIPanels.gameOverPanel.SetActive(false);
-
-
+        SceneManager.LoadScene("Game");        
     }
 
     private void OnEnable()
     {
         SpawnSubManagers();
     }
-
 }
