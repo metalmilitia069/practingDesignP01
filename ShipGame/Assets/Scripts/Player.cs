@@ -115,12 +115,13 @@ public class Player : MonoBehaviour
 
         if(_lives < 1)
         {
-            _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-            
-            if(_spawnManager != null)
-            {
-                _spawnManager.OnPlayerDeath();
-            }
+            //_spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+
+            //if(_spawnManager != null)
+            //{
+            //_spawnManager.OnPlayerDeath();
+            SpawnManager.instance.OnPlayerDeath();
+            //}
                        
             UIManager.instance.CheckForBestScore();
 

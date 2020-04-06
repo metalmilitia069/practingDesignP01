@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
         public GameObject mainMenuPanel;
         public GameObject pausePanel;
         public Animator pauseAnimator;
+        public GameObject playerUIPanel;
+        public GameObject gameOverPanel;
     }
 
     [Header("UI Panel Prefabs/References")]
@@ -63,11 +65,14 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
 
+
+    public Text ScoreText { get => _scoreText; set => _scoreText = value; }
+    public UIPanels SetOfUIPanels { get => setOfUIPanels; set => setOfUIPanels = value; }
 
 
     // Start is called before the first frame update
@@ -77,7 +82,7 @@ public class UIManager : MonoBehaviour
         _bestText.text = "Best: " + _bestScore;
 
         _scoreText.text = "Score: 0";
-        _gameOverText.gameObject.SetActive(false);
+        //_gameOverText.gameObject.SetActive(false);
 
 
         setOfUIPanels.pauseAnimator = setOfUIPanels.pausePanel.GetComponent<Animator>();
@@ -93,7 +98,7 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int score)
     {
         _score = score;
-        _scoreText.text = "Score: " + score; 
+        ScoreText.text = "Score: " + score; 
 
     }
 
@@ -119,8 +124,9 @@ public class UIManager : MonoBehaviour
 
     public void GameOverSequence()
     {
-        _gameOverText.gameObject.SetActive(true);
-        _restartText.gameObject.SetActive(true);
+        //_gameOverText.gameObject.SetActive(true);
+        //_restartText.gameObject.SetActive(true);
+        setOfUIPanels.gameOverPanel.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
         
         GameManager.instance.GameOver();

@@ -45,4 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isGameOver: 0
   _flipflop: 0
-  _pauseAnimator: {fileID: 0}
+  _setofSubManagers:
+    UIManager: {fileID: 8467887262796051946, guid: e2d7e2cf17af1214093921daf86b0724,
+      type: 3}
+    SpawnManager: {fileID: 5162911356179862683, guid: cb49b077c629bbb4b917656da8b6d874,
+      type: 3}

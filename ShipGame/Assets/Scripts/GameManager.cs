@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,10 +36,56 @@ public class GameManager : MonoBehaviour
     //[SerializeField]
     //private Animator _pauseAnimator;
 
+    [Serializable]   
+    public struct SetofSubManagers
+    {
+        public GameObject UIManager;
+        public GameObject SpawnManager;
+    }
+
+    [SerializeField]
+    [Header("Sub-Managers")]
+    [Space(20)]
+    private SetofSubManagers _setofSubManagers;
+
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        //SpawnSubManagers();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene aScene, LoadSceneMode aMode)
+    {
+        SpawnSubManagers();
+        //UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(true);
+        //UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(false);
+        //UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
+        //UIManager.instance.SetOfUIPanels.gameOverPanel.SetActive(false);
+
+        //SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(true);
+            UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
+            UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(false);
+            _flipflop = !_flipflop;
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(true);
+            UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(false);
+            UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
+            UIManager.instance.SetOfUIPanels.gameOverPanel.SetActive(false);
+        }
+    }
+
+    public void SpawnSubManagers()
+    {
+        Instantiate(_setofSubManagers.UIManager, transform.position, Quaternion.identity);
+        Instantiate(_setofSubManagers.SpawnManager, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -82,7 +129,9 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1.0f;
+
         _flipflop = !_flipflop;
+
         //_pauseMenuPanel.SetActive(_flipflop);
         UIManager.instance.SetPauseMenu(_flipflop);
     }
@@ -90,11 +139,30 @@ public class GameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(true);
+        UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
+        UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(false);
+        _flipflop = !_flipflop;
         Time.timeScale = 1.0f;
+
     }
 
-    
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("Game");
+        //GameManager.instance.SpawnSubManagers();
+
+        //UIManager.instance.SetOfUIPanels.playerUIPanel.SetActive(true);
+        //UIManager.instance.SetOfUIPanels.mainMenuPanel.SetActive(false);
+        //UIManager.instance.SetOfUIPanels.pausePanel.SetActive(false);
+        //UIManager.instance.SetOfUIPanels.gameOverPanel.SetActive(false);
 
 
+    }
+
+    private void OnEnable()
+    {
+        SpawnSubManagers();
+    }
 
 }
