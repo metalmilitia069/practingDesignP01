@@ -90,9 +90,19 @@ public class EnemyBaseClass : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
-    }   
+    }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "BoundaryBox")
+        {
+            BoundaryBox bb = other.gameObject.GetComponent<BoundaryBox>();
+            float randomX = Random.Range(bb.SpawnPointA.transform.position.x, bb.SpawnPointB.transform.position.x);
+            transform.position = new Vector3(randomX, bb.SpawnPointA.transform.position.y, 0);
+        }
+    }
+
+
 
 
 

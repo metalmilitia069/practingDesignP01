@@ -6,6 +6,8 @@ public class EnemyType01 : EnemyBaseClass
 {
 
     protected int _sideDirection = 0;
+    [SerializeField]
+    protected GameObject _enemyGeometry;
 
     // Start is called before the first frame update
     void Start()
@@ -22,29 +24,20 @@ public class EnemyType01 : EnemyBaseClass
 
     protected new void CalculateMovement()
     {
-        //int mozo = Random.Range(-1, 2);
-
         Vector3 direction = new Vector3(_sideDirection, -1, 0);
 
-        transform.Translate(direction * _speed * Time.deltaTime);//(Vector3.down * _speed * Time.deltaTime);
+        _enemyGeometry.gameObject.transform.rotation = Quaternion.Euler(90, 180, 15 * _sideDirection);
 
-
-        //if (transform.position.y < -6.5f)
-        //{
-        //    float randomX = Random.Range(-9, 9);
-        //    transform.position = new Vector3(randomX, 7, 0);
-        //}
-
-
+        transform.Translate(direction * _speed * Time.deltaTime);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "BoundaryBox")
-        {            
-            BoundaryBox bb = other.gameObject.GetComponent<BoundaryBox>();
-            float randomX = Random.Range(bb.SpawnPointA.transform.position.x, bb.SpawnPointB.transform.position.x);
-            transform.position = new Vector3(randomX, bb.SpawnPointA.transform.position.y, 0);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.tag == "BoundaryBox")
+    //    {            
+    //        BoundaryBox bb = other.gameObject.GetComponent<BoundaryBox>();
+    //        float randomX = Random.Range(bb.SpawnPointA.transform.position.x, bb.SpawnPointB.transform.position.x);
+    //        transform.position = new Vector3(randomX, bb.SpawnPointA.transform.position.y, 0);
+    //    }
+    //}
 }
