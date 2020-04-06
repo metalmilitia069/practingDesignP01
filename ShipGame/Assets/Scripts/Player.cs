@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _laserAudioClip;
+
+        EnemyBaseClass.OnLaserHit += AddScore;
     }
 
     // Update is called once per frame
@@ -66,12 +68,15 @@ public class Player : MonoBehaviour
         Vector3 direction = new Vector3(_horizontalAxis, _verticalAxis, 0);
         if (!_isSpeedEnabled)
         {
-            transform.Translate(direction * _speed * Time.deltaTime);
+            transform.Translate(direction * _speed * Time.deltaTime);            
         }
         else
         {
-            transform.Translate(direction * _speedMultiplier * _speed * Time.deltaTime);
+            transform.Translate(direction * _speedMultiplier * _speed * Time.deltaTime);            
         }
+
+        transform.rotation = Quaternion.AngleAxis(25.0f, Vector3.up * _horizontalAxis * -1 * Time.deltaTime);
+
 
         if (this.transform.position.x >= 11.10f)
         {
@@ -144,9 +149,17 @@ public class Player : MonoBehaviour
         _isShieldOn = true;
     }
 
+    //public delegate void PlayerGainScore(int score);
+    //public static event PlayerGainScore OnLaserHit;
+
     public void AddScore(int points)
     {
         _score += points;        
         UIManager.instance.UpdateScore(_score);
+    }
+
+    private void OnDisable()
+    {
+        EnemyBaseClass.OnLaserHit -= AddScore;
     }
 }
