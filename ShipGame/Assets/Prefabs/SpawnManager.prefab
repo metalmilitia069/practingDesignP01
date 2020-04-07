@@ -74,10 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3822b64520f45c141b4ab4853eb16b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 322285780969463342, guid: b2bc7f8bae338c34e945b8e06a401a17,
-    type: 3}
+  _enemyPrefabs:
+  - {fileID: 322285780969463342, guid: b2bc7f8bae338c34e945b8e06a401a17, type: 3}
+  - {fileID: 7487666467723112498, guid: 3ed88d10f317f354285857acb2472b51, type: 3}
   _enemySet: {fileID: 1881336330}
   _PowerUpPrefab:
   - {fileID: 2363207080949159648, guid: 4e69ecf55bd925f48b60be6b6c276182, type: 3}
   - {fileID: 6056811580283447797, guid: 9fb187242a6d7dc40870e6d805ade0c7, type: 3}
   - {fileID: 3417369554338300875, guid: 174f31110414cc74190c82ab9e9da7bb, type: 3}
+  _stopSpawing: 0

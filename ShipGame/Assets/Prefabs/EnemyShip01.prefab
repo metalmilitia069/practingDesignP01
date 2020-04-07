@@ -69,9 +69,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218572628277832803}
-  - component: {fileID: 1380132378}
   - component: {fileID: 651435497350716403}
   - component: {fileID: 4789667707474169189}
+  - component: {fileID: 1557781098}
   m_Layer: 0
   m_Name: EnemyShip01
   m_TagString: Enemy
@@ -96,24 +96,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1380132378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322285780969463342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b46f94941816c94bb46ef885606dcc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 4
-  _laserCannon01: {fileID: 771977529}
-  _laserCannon02: {fileID: 1023207976}
-  _laserPrefab: {fileID: 5491538138838044200, guid: 735fd86c5284c144c8df6864ba7193fb,
-    type: 3}
-  _fireRate: 3
 --- !u!65 &651435497350716403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -143,6 +125,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1557781098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322285780969463342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b11c253e569fc74898ae203096124e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
+  _laserCannon01: {fileID: 771977529}
+  _laserCannon02: {fileID: 1023207976}
+  _laserPrefab: {fileID: 5491538138838044200, guid: 735fd86c5284c144c8df6864ba7193fb,
+    type: 3}
+  _fireRate: 3
+  enemyWorthScore: 10
+  _enemyGeometry: {fileID: 2471339720423361837}
 --- !u!1001 &7514092409191128390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 8959846060259861112, guid: b5425fcc27f123b418e93bbe061fa061,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8959846060259861112, guid: b5425fcc27f123b418e93bbe061fa061,
         type: 3}
@@ -227,6 +229,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5425fcc27f123b418e93bbe061fa061, type: 3}
+--- !u!1 &2471339720423361837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5335812684781588587, guid: b5425fcc27f123b418e93bbe061fa061,
+    type: 3}
+  m_PrefabInstance: {fileID: 7514092409191128390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1445848690105466686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8959846060259861112, guid: b5425fcc27f123b418e93bbe061fa061,

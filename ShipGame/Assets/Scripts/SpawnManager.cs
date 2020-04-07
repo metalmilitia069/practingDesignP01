@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _enemyPrefab;    
+    private GameObject[] _enemyPrefabs;    
     [SerializeField]
     private GameObject _enemySet;
     [SerializeField]
@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
@@ -59,7 +59,8 @@ public class SpawnManager : MonoBehaviour
         while (!_stopSpawing)
         {
             Vector3 spawnPosition = new Vector3(Random.Range(-9f, 9f), 7, 0);
-            GameObject newEnemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+            int enemyIndex = Random.Range(0, 2);
+            GameObject newEnemy = Instantiate(_enemyPrefabs[enemyIndex], spawnPosition, Quaternion.identity);
             newEnemy.transform.parent = _enemySet.transform;
             yield return new WaitForSeconds(5.0f);
         }

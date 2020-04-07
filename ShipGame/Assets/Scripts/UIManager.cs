@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private Text _restartText;
+    [SerializeField]
+    private Slider _playerShield;
+    [SerializeField]
+    private Slider _playerHealth;
 
 
 
@@ -36,18 +40,14 @@ public class UIManager : MonoBehaviour
         public GameObject mainMenuPanel;
         public GameObject pausePanel;
         public Animator pauseAnimator;
+        public GameObject playerUIPanel;
+        public GameObject gameOverPanel;
     }
 
     [Header("UI Panel Prefabs/References")]
     [Space(20)]
     [SerializeField]
     private UIPanels setOfUIPanels;
-
-    //[Header("UI Panel Prefabs/References")]
-    //[Space(20)]
-    //[SerializeField]
-    //private 
-
 
     #region Singleton
 
@@ -63,11 +63,13 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
 
+
+    public Text ScoreText { get => _scoreText; set => _scoreText = value; }
+    public UIPanels SetOfUIPanels { get => setOfUIPanels; set => setOfUIPanels = value; }
 
 
     // Start is called before the first frame update
@@ -77,8 +79,6 @@ public class UIManager : MonoBehaviour
         _bestText.text = "Best: " + _bestScore;
 
         _scoreText.text = "Score: 0";
-        _gameOverText.gameObject.SetActive(false);
-
 
         setOfUIPanels.pauseAnimator = setOfUIPanels.pausePanel.GetComponent<Animator>();
         setOfUIPanels.pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int score)
     {
         _score = score;
-        _scoreText.text = "Score: " + score; 
+        ScoreText.text = "Score: " + score; 
 
     }
 
@@ -109,18 +109,36 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLivesDisplay(int lives)
     {
-        _livesDisplay.sprite = _lifeSprites[lives];
+        //_livesDisplay.sprite = _lifeSprites[lives];
 
-        if(lives < 1)
+        //if(lives < 1)
+        //{
+        //    GameOverSequence();
+        //}
+
+        if(_playerShield.value < 1)
+        {
+            _playerHealth.value -= lives;
+        }
+        else
+        {
+            _playerShield.value -= lives;
+        }
+
+        if (_playerHealth.value == 0)
         {
             GameOverSequence();
         }
     }
 
-    public void GameOverSequence()
+    public void FillUpShields()
     {
-        _gameOverText.gameObject.SetActive(true);
-        _restartText.gameObject.SetActive(true);
+        _playerShield.value = 5;
+    }
+
+    public void GameOverSequence()
+    {        
+        setOfUIPanels.gameOverPanel.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
         
         GameManager.instance.GameOver();
@@ -149,7 +167,6 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         _flipflop = !_flipflop;
-        //_pauseMenuPanel.SetActive(_flipflop);
     }
 
     public void SetPauseMenu(bool flipflop)

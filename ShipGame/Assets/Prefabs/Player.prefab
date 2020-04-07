@@ -148,9 +148,11 @@ MonoBehaviour:
   _cannon01Position: {fileID: 7834223842120662089}
   _fireRate: 0.15
   _lives: 3
+  _shields: 5
+  _health: 5
   _isTripleShotEnabled: 0
   _isSpeedEnabled: 0
-  _isShieldOn: 0
+  _isShieldOn: 1
   _score: 0
   _laserAudioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
 --- !u!136 &7901980911530142786
