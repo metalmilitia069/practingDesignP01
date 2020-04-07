@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private Text _restartText;
+    [SerializeField]
+    private Slider _playerShield;
+    [SerializeField]
+    private Slider _playerHealth;
 
 
 
@@ -105,12 +109,31 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLivesDisplay(int lives)
     {
-        _livesDisplay.sprite = _lifeSprites[lives];
+        //_livesDisplay.sprite = _lifeSprites[lives];
 
-        if(lives < 1)
+        //if(lives < 1)
+        //{
+        //    GameOverSequence();
+        //}
+
+        if(_playerShield.value < 1)
+        {
+            _playerHealth.value -= lives;
+        }
+        else
+        {
+            _playerShield.value -= lives;
+        }
+
+        if (_playerHealth.value == 0)
         {
             GameOverSequence();
         }
+    }
+
+    public void FillUpShields()
+    {
+        _playerShield.value = 5;
     }
 
     public void GameOverSequence()

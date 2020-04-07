@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     private float _fireRate = 0.15f;
     [SerializeField]
     private int _lives = 3;
+    [SerializeField]
+    private int _shields = 5;
+    [SerializeField]
+    private int _health = 5;
 
     private SpawnManager _spawnManager;
 
@@ -85,9 +89,13 @@ public class Player : MonoBehaviour
         else if (this.transform.position.x <= -11.15f)
         {
             this.transform.position = new Vector3(11.05f, this.transform.position.y, this.transform.position.z);
-        }      
+        }
 
-        this.transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.2f, 0), 0);
+        //this.transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.2f, 0), 0);
+        this.transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -7.1f, 0), 0);
+        //Vector3 screenDimentions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        //Debug.Log(screenDimentions.x + " " + screenDimentions.y + " " + screenDimentions.z);
+        //Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,0));
     }
 
     private void Fire()
@@ -107,19 +115,51 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        if(_isShieldOn)
+        //if(_isShieldOn)
+        //{
+        //    _isShieldOn = false;
+        //    return;
+        //}
+        //_lives--;        
+
+        //UIManager.instance.UpdateLivesDisplay(_lives);
+
+        //if(_lives < 1)
+        //{            
+        //    SpawnManager.instance.OnPlayerDeath();           
+
+        //    UIManager.instance.CheckForBestScore();
+
+        //    Destroy(this.gameObject);
+        //}
+
+        if (_isShieldOn)
         {
-            _isShieldOn = false;
-            return;
+            //_isShieldOn = false;
+            
+            if(_shields < 1)
+            {
+                _isShieldOn = false;                
+            }
+            else
+            {
+                _shields--;
+                UIManager.instance.UpdateLivesDisplay(1);
+                return;
+            }
+            
         }
-        _lives--;        
+        
+        
+            _health--;
+                
 
-        UIManager.instance.UpdateLivesDisplay(_lives);
+        UIManager.instance.UpdateLivesDisplay(1);
 
-        if(_lives < 1)
-        {            
-            SpawnManager.instance.OnPlayerDeath();           
-                       
+        if (_health < 1)
+        {
+            SpawnManager.instance.OnPlayerDeath();
+
             UIManager.instance.CheckForBestScore();
 
             Destroy(this.gameObject);
@@ -147,6 +187,8 @@ public class Player : MonoBehaviour
     public void EnableShield()
     {
         _isShieldOn = true;
+        _shields = 5;
+        UIManager.instance.FillUpShields();
     }
 
     //public delegate void PlayerGainScore(int score);
