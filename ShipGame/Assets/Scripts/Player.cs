@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     private float _fireRate = 0.15f;
     [SerializeField]
     private int _lives = 3;
+    [SerializeField]
+    private int _shields = 5;
+    [SerializeField]
+    private int _health = 5;
 
     private SpawnManager _spawnManager;
 
@@ -32,7 +36,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int _score;
-
     
     [SerializeField]
     private AudioClip _laserAudioClip;
@@ -46,6 +49,8 @@ public class Player : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _laserAudioClip;
+
+        EnemyBaseClass.OnLaserHit += AddScore;
     }
 
     // Update is called once per frame
@@ -57,7 +62,6 @@ public class Player : MonoBehaviour
         {
             this.Fire();
         }
-
     }
 
     private void CalculateMovement()
@@ -68,12 +72,15 @@ public class Player : MonoBehaviour
         Vector3 direction = new Vector3(_horizontalAxis, _verticalAxis, 0);
         if (!_isSpeedEnabled)
         {
-            transform.Translate(direction * _speed * Time.deltaTime);
+            transform.Translate(direction * _speed * Time.deltaTime);            
         }
         else
         {
-            transform.Translate(direction * _speedMultiplier * _speed * Time.deltaTime);
+            transform.Translate(direction * _speedMultiplier * _speed * Time.deltaTime);            
         }
+
+        transform.rotation = Quaternion.AngleAxis(25.0f, Vector3.up * _horizontalAxis * -1 * Time.deltaTime);
+
 
         if (this.transform.position.x >= 11.10f)
         {
@@ -82,9 +89,13 @@ public class Player : MonoBehaviour
         else if (this.transform.position.x <= -11.15f)
         {
             this.transform.position = new Vector3(11.05f, this.transform.position.y, this.transform.position.z);
-        }      
+        }
 
-        this.transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.2f, 0), 0);
+        //this.transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.2f, 0), 0);
+        this.transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -7.1f, 0), 0);
+        //Vector3 screenDimentions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        //Debug.Log(screenDimentions.x + " " + screenDimentions.y + " " + screenDimentions.z);
+        //Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,0));
     }
 
     private void Fire()
@@ -104,24 +115,51 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        if(_isShieldOn)
-        {
-            _isShieldOn = false;
-            return;
-        }
-        _lives--;        
+        //if(_isShieldOn)
+        //{
+        //    _isShieldOn = false;
+        //    return;
+        //}
+        //_lives--;        
 
-        UIManager.instance.UpdateLivesDisplay(_lives);
+        //UIManager.instance.UpdateLivesDisplay(_lives);
 
-        if(_lives < 1)
+        //if(_lives < 1)
+        //{            
+        //    SpawnManager.instance.OnPlayerDeath();           
+
+        //    UIManager.instance.CheckForBestScore();
+
+        //    Destroy(this.gameObject);
+        //}
+
+        if (_isShieldOn)
         {
-            _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+            //_isShieldOn = false;
             
-            if(_spawnManager != null)
+            if(_shields < 1)
             {
-                _spawnManager.OnPlayerDeath();
+                _isShieldOn = false;                
             }
-                       
+            else
+            {
+                _shields--;
+                UIManager.instance.UpdateLivesDisplay(1);
+                return;
+            }
+            
+        }
+        
+        
+            _health--;
+                
+
+        UIManager.instance.UpdateLivesDisplay(1);
+
+        if (_health < 1)
+        {
+            SpawnManager.instance.OnPlayerDeath();
+
             UIManager.instance.CheckForBestScore();
 
             Destroy(this.gameObject);
@@ -149,11 +187,21 @@ public class Player : MonoBehaviour
     public void EnableShield()
     {
         _isShieldOn = true;
+        _shields = 5;
+        UIManager.instance.FillUpShields();
     }
+
+    //public delegate void PlayerGainScore(int score);
+    //public static event PlayerGainScore OnLaserHit;
 
     public void AddScore(int points)
     {
         _score += points;        
         UIManager.instance.UpdateScore(_score);
+    }
+
+    private void OnDisable()
+    {
+        EnemyBaseClass.OnLaserHit -= AddScore;
     }
 }

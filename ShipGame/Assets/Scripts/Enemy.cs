@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _fireRate = 3.0f;
     private float _canFire = -1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +39,6 @@ public class Enemy : MonoBehaviour
             enemylasers[0].GetComponent<Projectile>().SetEnemyLaser();
             enemylasers[1].GetComponent<Projectile>().SetEnemyLaser();
         };
-            
-            
-        
     }
 
     void CalculateMovement()
