@@ -1527,7 +1527,7 @@ PrefabInstance:
     - target: {fileID: 2435245303201366745, guid: 9889a445c99425f49907eeb34274f2aa,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2435245303201366759, guid: 9889a445c99425f49907eeb34274f2aa,
         type: 3}
@@ -1773,6 +1773,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LaserBolt01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236994543656208120, guid: 9d19a598f6f3ad943b4d83a69046623c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d19a598f6f3ad943b4d83a69046623c, type: 3}
