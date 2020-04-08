@@ -10,6 +10,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemySet;
     [SerializeField]
     private GameObject[] _PowerUpPrefab;
+    [SerializeField]
+    private GameObject[] _asteroidField;
     
 
     [SerializeField]
@@ -52,6 +54,7 @@ public class SpawnManager : MonoBehaviour
         _stopSpawing = false;
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupsRoutine());
+        StartCoroutine(SpawnAsteroidsRoutine());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -76,6 +79,28 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
+
+    IEnumerator SpawnAsteroidsRoutine()
+    {
+        while(!_stopSpawing)
+        {
+            int randomAsteroidPositionHeight = Random.Range(3, 10);
+            Vector3 spawnPosition = new Vector3(Random.Range(-9f, 9f), 7, randomAsteroidPositionHeight);
+            
+            int randomAsteroidPrefab = Random.Range(0, 4);
+            GameObject newAsteroid = Instantiate(_asteroidField[randomAsteroidPrefab], spawnPosition, Quaternion.identity);
+
+
+            int randomAsteroidPositionHeight01 = Random.Range(-10, -3);
+            Vector3 spawnPosition01 = new Vector3(Random.Range(-9f, 9f), 7, randomAsteroidPositionHeight01);
+
+            int randomAsteroidPrefab01 = Random.Range(0, 3);
+            GameObject newAsteroid01 = Instantiate(_asteroidField[randomAsteroidPrefab01], spawnPosition01, Quaternion.identity);
+
+            yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
+        }
+    }
+
 
     public void OnPlayerDeath()
     {

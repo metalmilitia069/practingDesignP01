@@ -82,4 +82,9 @@ MonoBehaviour:
   - {fileID: 2363207080949159648, guid: 4e69ecf55bd925f48b60be6b6c276182, type: 3}
   - {fileID: 6056811580283447797, guid: 9fb187242a6d7dc40870e6d805ade0c7, type: 3}
   - {fileID: 3417369554338300875, guid: 174f31110414cc74190c82ab9e9da7bb, type: 3}
+  _asteroidField:
+  - {fileID: 576438402866193165, guid: 8aebf4900c6b2724e887b52d22300668, type: 3}
+  - {fileID: 595385035098099342, guid: 02f37a9f210421144a9860be8388f7a5, type: 3}
+  - {fileID: 4496398829016997642, guid: b7270e1cc10150e4a807e7ae4881f222, type: 3}
+  - {fileID: 7005393774144374330, guid: 22bd8d579f912834297edf5bf2b9d7d7, type: 3}
   _stopSpawing: 0
