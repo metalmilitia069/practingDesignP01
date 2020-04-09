@@ -183,6 +183,7 @@ MonoBehaviour:
   _tripleLaserPrefab: {fileID: 7412040189016231604, guid: cd83a9d626cb4b54b89d01332b68c960,
     type: 3}
   _cannon01Position: {fileID: 7834223842120662089}
+  _shieldParticles: {fileID: 2975637182779572432}
   _fireRate: 0.15
   _lives: 3
   _shields: 5
@@ -9940,16 +9941,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.6666662
       objectReference: {fileID: 0}
-    - target: {fileID: 198772230390787302, guid: c5febdd93ab44d640b3eb37b768360bb,
-        type: 3}
-      propertyPath: UVModule.flipU
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198772230390787302, guid: c5febdd93ab44d640b3eb37b768360bb,
-        type: 3}
-      propertyPath: UVModule.flipV
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5febdd93ab44d640b3eb37b768360bb, type: 3}
 --- !u!4 &4805017815809838 stripped
@@ -10119,6 +10110,12 @@ PrefabInstance:
 --- !u!4 &2979284051170798252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2979284051078007409, guid: 10a73708bffd83b4cb4f32f1127c6a49,
+    type: 3}
+  m_PrefabInstance: {fileID: 2121818333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2975637182779572432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2975637184498704397, guid: 10a73708bffd83b4cb4f32f1127c6a49,
     type: 3}
   m_PrefabInstance: {fileID: 2121818333}
   m_PrefabAsset: {fileID: 0}

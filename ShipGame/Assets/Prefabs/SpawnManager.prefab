@@ -79,9 +79,9 @@ MonoBehaviour:
   - {fileID: 7487666467723112498, guid: 3ed88d10f317f354285857acb2472b51, type: 3}
   _enemySet: {fileID: 1881336330}
   _PowerUpPrefab:
-  - {fileID: 2363207080949159648, guid: 4e69ecf55bd925f48b60be6b6c276182, type: 3}
-  - {fileID: 6056811580283447797, guid: 9fb187242a6d7dc40870e6d805ade0c7, type: 3}
-  - {fileID: 3417369554338300875, guid: 174f31110414cc74190c82ab9e9da7bb, type: 3}
+  - {fileID: 3993093822342147766, guid: 71dcf8a463f64e74dbe3bcedc7fdb766, type: 3}
+  - {fileID: 5945720261602596736, guid: 275e33b06e5d7ad48a29848fc9d98f0f, type: 3}
+  - {fileID: 3198620261252871322, guid: ef95c96f59181c546a8694d0db7f4cd2, type: 3}
   _asteroidField:
   - {fileID: 576438402866193165, guid: 8aebf4900c6b2724e887b52d22300668, type: 3}
   - {fileID: 595385035098099342, guid: 02f37a9f210421144a9860be8388f7a5, type: 3}

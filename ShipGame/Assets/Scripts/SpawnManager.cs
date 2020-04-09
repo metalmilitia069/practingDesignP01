@@ -65,7 +65,7 @@ public class SpawnManager : MonoBehaviour
             int enemyIndex = Random.Range(0, 2);
             GameObject newEnemy = Instantiate(_enemyPrefabs[enemyIndex], spawnPosition, Quaternion.identity);
             newEnemy.transform.parent = _enemySet.transform;
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(3.5f);
         }
     }
 
@@ -76,7 +76,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 spawnPosition = new Vector3(Random.Range(-9f, 9f), 7, 0);
             int randomPowerUp = Random.Range(0, 3);
             GameObject newPowerUp = Instantiate(_PowerUpPrefab[randomPowerUp], spawnPosition, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 8));
+            yield return new WaitForSeconds(Random.Range(7, 10));
         }
     }
 
@@ -97,7 +97,7 @@ public class SpawnManager : MonoBehaviour
             int randomAsteroidPrefab01 = Random.Range(0, 3);
             GameObject newAsteroid01 = Instantiate(_asteroidField[randomAsteroidPrefab01], spawnPosition01, Quaternion.identity);
 
-            yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
+            yield return new WaitForSeconds(Random.Range(0.35f, 1.00f));
         }
     }
 
