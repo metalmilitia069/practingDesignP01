@@ -25,13 +25,19 @@ public class BoundaryBox : MonoBehaviour
         
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Enemy")
-    //    {
-    //        Debug.Log("saiuuuuuuu");
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {           
+            EnemyBaseClass bb = other.gameObject.GetComponent<EnemyBaseClass>();
+            float randomX = Random.Range(SpawnPointA.transform.position.x, SpawnPointB.transform.position.x);
+            bb.transform.position = new Vector3(randomX, SpawnPointA.transform.position.y, 0);
+        }
+        if(other.tag == "Asteroid")
+        {
+            Destroy(other.gameObject);
+        }
+    }
 
     public void moz()
     {
