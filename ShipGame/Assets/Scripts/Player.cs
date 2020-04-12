@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _cannon01Position;
     [SerializeField]
+    private GameObject _shieldParticles;
+    [SerializeField]
     private float _fireRate = 0.15f;
     [SerializeField]
     private int _lives = 3;
@@ -139,7 +141,8 @@ public class Player : MonoBehaviour
             
             if(_shields < 1)
             {
-                _isShieldOn = false;                
+                _isShieldOn = false;
+                _shieldParticles.gameObject.SetActive(false);
             }
             else
             {
@@ -187,8 +190,10 @@ public class Player : MonoBehaviour
     public void EnableShield()
     {
         _isShieldOn = true;
+        _shieldParticles.gameObject.SetActive(true);
         _shields = 5;
         UIManager.instance.FillUpShields();
+
     }
 
     //public delegate void PlayerGainScore(int score);

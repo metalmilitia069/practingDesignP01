@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Asteroid" Collapsed="true">
+    <Position X="6.5" Y="10.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAQAAAAAAAQBAAAAAAAAQAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Asteroid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidField" Collapsed="true">
+    <Position X="5.25" Y="8.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAABAAAAAAAAAAAEAACAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AsteroidField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoundaryBox" Collapsed="true">
+    <Position X="0.5" Y="10.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACCAAAACAABABAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\BoundaryBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyBaseClass" Collapsed="true">
+    <Position X="3.5" Y="10.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="EnemyBaseClass.PlayerGainScore">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\EnemyBaseClass.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAACAAAAAAAAAAGAAAQAAAAIiERAAAIAIAACA=</HashCode>
+      <FileName>Assets\Scripts\EnemyBaseClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyType01" Collapsed="true">
+    <Position X="1.75" Y="12" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAABAAAAAAAAAAAAAAAAAAAAgAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\EnemyType01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyType02" Collapsed="true">
+    <Position X="5.75" Y="12" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\EnemyType02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explosion" Collapsed="true">
+    <Position X="3.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="3" Y="5.75" Width="4.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="GameManager.SetofSubManagers">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAACAAAAACAAAIEAAAAABACAAQAQAAACAACEE=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu" Collapsed="true">
+    <Position X="3" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseMenu" Collapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PauseMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planet" Collapsed="true">
+    <Position X="8.25" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAIgAAAAAAAAAAAAAAIgAAA=</HashCode>
+      <FileName>Assets\Scripts\Planet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="7.75" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAFiKICEAIgAAACSAEQABAABGAECpBAAAAAIAAAE=</HashCode>
+      <FileName>Assets\Scripts\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerUp" Collapsed="true">
+    <Position X="0.5" Y="8.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAAACAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PowerUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile" Collapsed="true">
+    <Position X="5" Y="9.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAICACAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpawnManager" Collapsed="true">
+    <Position X="5.25" Y="7" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAADAEAAAAgABAAABEIABAAAAAABAAAAAAAUA=</HashCode>
+      <FileName>Assets\Scripts\SpawnManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIManager" Collapsed="true">
+    <Position X="2" Y="7" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="UIManager.UIPanels">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\UIManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AERQDAAAACAEAgAIEAEQGCAgAABICYAAAiAAAEBAAEA=</HashCode>
+      <FileName>Assets\Scripts\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

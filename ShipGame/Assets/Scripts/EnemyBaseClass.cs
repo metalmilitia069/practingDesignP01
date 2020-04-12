@@ -21,6 +21,9 @@ public class EnemyBaseClass : MonoBehaviour
     [SerializeField]
     protected int enemyWorthScore = 10;
 
+    [SerializeField]
+    protected GameObject _explosionFX;
+
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +78,8 @@ public class EnemyBaseClass : MonoBehaviour
                 player.Damage();
             }
 
-            Destroy(this.gameObject);
+            _explosionFX.gameObject.SetActive(true);
+            Destroy(this.gameObject, 0.5f);
         }
         else if (other.tag == "Laser")
         {
@@ -88,22 +92,20 @@ public class EnemyBaseClass : MonoBehaviour
             //    //_player.AddScore(10);
             //}
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+
+
+            _explosionFX.gameObject.SetActive(true);
+            Destroy(this.gameObject, 0.5f);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "BoundaryBox")
-        {
-            BoundaryBox bb = other.gameObject.GetComponent<BoundaryBox>();
-            float randomX = Random.Range(bb.SpawnPointA.transform.position.x, bb.SpawnPointB.transform.position.x);
-            transform.position = new Vector3(randomX, bb.SpawnPointA.transform.position.y, 0);
-        }
+        //if (other.tag == "BoundaryBox")
+        //{
+        //    BoundaryBox bb = other.gameObject.GetComponent<BoundaryBox>();
+        //    float randomX = Random.Range(bb.SpawnPointA.transform.position.x, bb.SpawnPointB.transform.position.x);
+        //    transform.position = new Vector3(randomX, bb.SpawnPointA.transform.position.y, 0);
+        //}
     }
-
-
-
-
-
 }
